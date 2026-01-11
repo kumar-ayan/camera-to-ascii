@@ -43,7 +43,7 @@ function App() {
     <div className="app-container">
       {isUIVisible && (
         <div className="controls">
-          <h1>MATRIX_CAM_V1.1</h1>
+          <h1>ASCII CAM</h1>
           <div className="control-group">
             <label>FONT_SIZE: {fontSize}px</label>
             <input
