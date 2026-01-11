@@ -1,73 +1,61 @@
-# React + TypeScript + Vite
+# 📟 Matrix Camera to ASCII
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A real-time camera-to-ASCII web application with a "Cyberpunk/Matrix" aesthetic. Built with React, Vite, and TypeScript.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Real-time Conversion**: Converts webcam feed to ASCII art at 30-60 FPS using luminosity mapping.
+- **Strict Auto-Resolution**: Automatically adjusts the grid dimensions to perfectly fill your screen based on font size.
+- **Image Upload**: Switch from camera mode to upload and convert any static image.
+- **Snapshot Capture**: Download high-quality PNG screenshots of your ASCII art.
+- **Smart Mirroring**: Automatically mirrors the webcam feed for a natural feel, while keeping uploaded images standard.
+- **Matrix Aesthetic**: Custom "green-on-black" theme with CRT scanline effects and a clean, hidden UI (press 'H' to toggle).
+- **Customizable**: Adjust font size and color in real-time.
 
-## React Compiler
+## 🚀 Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js (v14 or higher)
+- npm
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Installation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/kumar-ayan/camera-to-ascii.git
+   cd camera-to-ascii
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+4. Open your browser and navigate to the localhost URL shown in the terminal (usually `http://localhost:5173`).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Built With
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **[React](https://reactjs.org/)** - UI Library
+- **[Vite](https://vitejs.dev/)** - Build Tool
+- **[TypeScript](https://www.typescriptlang.org/)** - Static Typing
+- **Canvas API** - Image Processing
+
+## 🎮 Controls
+
+- **Font Size**: Slider to adjust character size (affects resolution).
+- **Color**: Picker to change the matrix text color.
+- **Mode**: Toggle between Standard and Complex character sets.
+- **Upload Image**: Load a static image file.
+- **Capture Snapshot**: Save current view as PNG.
+- **'H' Key**: Toggle UI visibility.
+- **Fullscreen**: Toggle browser fullscreen (F11/Native).
+
+## 📄 License
+
+This project is open source.
