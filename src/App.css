@@ -1,0 +1,168 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.controls {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid #33ff00;
+  padding: 20px;
+  z-index: 100;
+  font-family: 'Courier New', Courier, monospace;
+  color: #33ff00;
+  box-shadow: 0 0 15px rgba(51, 255, 0, 0.3);
+  backdrop-filter: blur(5px);
+  border-radius: 6px;
+  min-width: 250px;
+  transition: opacity 0.3s ease;
+}
+
+.controls h1 {
+  font-size: 1.2rem;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #33ff00;
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.control-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.control-group label {
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+  opacity: 0.9;
+  letter-spacing: 1px;
+}
+
+.control-group input[type="range"] {
+  width: 100%;
+  accent-color: #33ff00;
+  cursor: pointer;
+  height: 4px;
+  background: #111;
+  appearance: none;
+  border-radius: 2px;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  background: #33ff00;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.button-group button,
+.actions button {
+  flex: 1;
+  background: rgba(0, 50, 0, 0.5);
+  border: 1px solid #33ff00;
+  color: #33ff00;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.button-group button:hover,
+.actions button:hover {
+  background: #33ff00;
+  color: #000;
+  box-shadow: 0 0 10px #33ff00;
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid rgba(51, 255, 0, 0.3);
+  padding-top: 15px;
+}
+
+.hint-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: rgba(51, 255, 0, 0.5);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  pointer-events: none;
+  z-index: 90;
+}
+
+.display-area {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.ascii-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ascii-output {
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre;
+  text-align: center;
+  font-weight: bold;
+  font-variant-ligatures: none;
+  -webkit-font-smoothing: none;
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0) 50%,
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.1));
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 50;
+  animation: scroll 10s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 0 100%;
+  }
+}
