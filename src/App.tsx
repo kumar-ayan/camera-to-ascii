@@ -20,15 +20,7 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      }
-    }
-  };
+
 
   return (
     <div className="app-container">
@@ -60,10 +52,7 @@ function App() {
               <button onClick={() => setDensityStr(DENSITY_STRING_COMPLEX)}>COMPLEX</button>
             </div>
           </div>
-          <div className="actions">
-            <button onClick={toggleFullscreen}>FULLSCREEN</button>
-            <button onClick={() => setIsUIVisible(false)}>HIDE UI (Press 'H')</button>
-          </div>
+
         </div>
       )}
 
