@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback, useImperativeHandle, forwardRef } from 'react';
+import { useEffect, useRef, useState, useCallback, useImperativeHandle, forwardRef } from 'react';
 import { convertImageDataToAscii, DENSITY_STRING_DEFAULT } from '../utils/ascii';
 
 interface AsciiDisplayProps {
@@ -40,7 +40,7 @@ const AsciiDisplay = forwardRef<AsciiDisplayHandle, AsciiDisplayProps>(({
         capture: () => {
             if (!frameDataRef.current || !containerRef.current) return;
 
-            const { ascii, w, h, preciseCharWidth, preciseLineHeight } = frameDataRef.current;
+            const { ascii, preciseCharWidth, preciseLineHeight } = frameDataRef.current;
             const { clientWidth, clientHeight } = containerRef.current;
 
             const captureCanvas = document.createElement('canvas');
@@ -110,6 +110,10 @@ const AsciiDisplay = forwardRef<AsciiDisplayHandle, AsciiDisplayProps>(({
         }
 
         const canvas = canvasRef.current;
+        if (!canvas) {
+            requestAnimationFrame(processFrame);
+            return;
+        }
         const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
         if (!ctx || !containerRef.current || !measureRef.current) {
@@ -182,7 +186,9 @@ const AsciiDisplay = forwardRef<AsciiDisplayHandle, AsciiDisplayProps>(({
         const imageData = ctx.getImageData(0, 0, w, h);
         const ascii = convertImageDataToAscii(imageData, w, h, d);
 
-        preRef.current.innerText = ascii;
+        if (preRef.current) {
+            preRef.current.innerText = ascii;
+        }
 
         // Update frame data for capture
         frameDataRef.current = { ascii, w, h, preciseCharWidth, preciseLineHeight };
