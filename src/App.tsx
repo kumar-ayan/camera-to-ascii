@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import AsciiDisplay from './components/AsciiDisplay';
+import { useState, useEffect, useRef } from 'react';
+import AsciiDisplay, { type AsciiDisplayHandle } from './components/AsciiDisplay';
 import { DENSITY_STRING_DEFAULT, DENSITY_STRING_COMPLEX } from './utils/ascii';
 import './App.css';
 
@@ -8,6 +8,8 @@ function App() {
   const [color, setColor] = useState('#00ff41'); // Matrix green
   const [isUIVisible, setIsUIVisible] = useState(true);
   const [densityStr, setDensityStr] = useState(DENSITY_STRING_DEFAULT);
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const asciiRef = useRef<AsciiDisplayHandle>(null);
 
   // Toggle UI with 'H' key
   useEffect(() => {
@@ -20,7 +22,22 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          setImageSrc(event.target.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
+  const clearImage = () => {
+    setImageSrc(null);
+  };
 
   return (
     <div className="app-container">
@@ -53,6 +70,27 @@ function App() {
             </div>
           </div>
 
+          <div className="control-group">
+            <label>SOURCE</label>
+            <div className="file-input-wrapper">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                id="file-upload"
+                className="hidden-input"
+              />
+              <label htmlFor="file-upload" className="button-style">UPLOAD IMAGE</label>
+            </div>
+            {imageSrc && (
+              <button onClick={clearImage} style={{ marginTop: '10px' }}>SWITCH TO CAMERA</button>
+            )}
+          </div>
+
+          <div className="actions">
+            <button onClick={() => asciiRef.current?.capture()}>CAPTURE SNAPSHOT</button>
+          </div>
+
         </div>
       )}
 
@@ -62,9 +100,11 @@ function App() {
 
       <div className="display-area">
         <AsciiDisplay
+          ref={asciiRef}
           fontSize={fontSize}
           color={color}
           densityStr={densityStr}
+          imageSrc={imageSrc}
         />
       </div>
 

@@ -73,7 +73,9 @@
 }
 
 .button-group button,
-.actions button {
+.actions button,
+.button-style,
+.control-group button {
   flex: 1;
   background: rgba(0, 50, 0, 0.5);
   border: 1px solid #33ff00;
@@ -85,13 +87,25 @@
   transition: all 0.2s;
   text-transform: uppercase;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 .button-group button:hover,
-.actions button:hover {
+.actions button:hover,
+.button-style:hover,
+.control-group button:hover {
   background: #33ff00;
   color: #000;
   box-shadow: 0 0 10px #33ff00;
+}
+
+.file-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden-input {
+  display: none;
 }
 
 .actions {
